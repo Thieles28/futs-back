@@ -1,7 +1,6 @@
 package com.futs.resource;
 
-import com.futs.model.Times;
-import com.futs.repository.TimesRepository;
+import com.futs.model.Time;
 import com.futs.service.impl.TimesServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,37 +16,32 @@ import java.util.List;
 public class TimesResource {
 
     @Autowired
-    private TimesRepository timesRepository;
-
-    @Autowired
     private TimesServiceImpl timesServiceImpl;
 
     @GetMapping
-    public List<Times> listarTimes() {
-        return timesRepository.findAll();
+    public List<Time> listarTimes() {
+        return timesServiceImpl.listarTodosTimes();
     }
 
     @GetMapping("{codigo}")
-    public Times buscarTime(@PathVariable("codigo") Long codigo) {
-        return timesRepository.findById(codigo).orElse(null);
+    public Time buscarTime(@PathVariable("codigo") Long codigo) {
+        return timesServiceImpl.buscarTimesPeloCodigo(codigo);
     }
 
     @PostMapping
-    public ResponseEntity<Times> cadastrarTimes(@Valid @RequestBody Times times) {
-         Times time = timesRepository.save(times);
-         return ResponseEntity.status(HttpStatus.CREATED).body(time);
+    public ResponseEntity<Time> cadastrarTimes(@Valid @RequestBody Time time) {
+         return timesServiceImpl.cadastrarTimes(time);
     }
 
     @PutMapping("{codigo}")
-    public ResponseEntity<Times> atualizarTimes(@PathVariable("codigo") Long codigo, @Valid @RequestBody Times times) {
-        Times atualizar = timesServiceImpl.atualizar(times, codigo);
-        return ResponseEntity.ok(atualizar);
+    public ResponseEntity<Time> atualizarTimes(@PathVariable("codigo") Long codigo, @Valid @RequestBody Time time) {
+        return timesServiceImpl.atualizar(codigo, time);
     }
 
     @DeleteMapping("{codigo}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void removerTimes(@PathVariable("codigo") Long codigo) {
-        timesRepository.deleteById(codigo);
+        timesServiceImpl.removerTimes(codigo);
     }
 
 }

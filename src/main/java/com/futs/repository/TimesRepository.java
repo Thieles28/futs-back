@@ -1,7 +1,7 @@
 package com.futs.repository;
 
-import com.futs.model.Times;
+import com.futs.model.Time;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface TimesRepository extends JpaRepository<Times, Long> {
+public interface TimesRepository extends JpaRepository<Time, Long> {
 }
