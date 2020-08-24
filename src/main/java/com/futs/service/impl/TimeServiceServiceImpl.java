@@ -1,8 +1,8 @@
 package com.futs.service.impl;
 
 import com.futs.model.Time;
-import com.futs.repository.TimesRepository;
-import com.futs.service.TimesService;
+import com.futs.repository.TimeRepository;
+import com.futs.service.TimeService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -16,18 +16,18 @@ import java.util.List;
 import static java.util.Objects.isNull;
 
 @Service
-public class TimesServiceImpl implements TimesService {
+public class TimeServiceServiceImpl implements TimeService {
 
     @Autowired
-    private TimesRepository timesRepository;
+    private TimeRepository timeRepository;
 
     @Override
     public List<Time> listarTodosTimes() {
-        return timesRepository.findAll();
+        return timeRepository.findAll();
     }
 
-    public Time buscarTimesPeloCodigo(Long codigo) {
-        Time timeSalvo = timesRepository.findById(codigo).orElse(null);
+    public Time buscarTimesPeloCodigo(Integer codigo) {
+        Time timeSalvo = timeRepository.findById(codigo).orElse(null);
 
         if (isNull(timeSalvo)) {
             throw new EmptyResultDataAccessException(1);
@@ -37,20 +37,20 @@ public class TimesServiceImpl implements TimesService {
 
     @Override
     public ResponseEntity<Time> cadastrarTimes(@RequestBody Time time) {
-        Time respTime = timesRepository.save(time);
+        Time respTime = timeRepository.save(time);
         return ResponseEntity.status(HttpStatus.CREATED).body(respTime);
     }
 
     @Override
-    public ResponseEntity<Time> atualizar(Long codigo, Time time) {
+    public ResponseEntity<Time> atualizar(Integer codigo, Time time) {
         Time timeSalvo = buscarTimesPeloCodigo(codigo);
-        BeanUtils.copyProperties(time, timeSalvo, "codigo");
-        Time salvo = timesRepository.save(timeSalvo);
+        BeanUtils.copyProperties(time, timeSalvo, "codigoTime");
+        Time salvo = timeRepository.save(timeSalvo);
         return ResponseEntity.status(HttpStatus.OK).body(salvo);
     }
 
     @Override
-    public void removerTimes(Long codigo) {
-        timesRepository.deleteById(codigo);
+    public void removerTimes(Integer codigo) {
+        timeRepository.deleteById(codigo);
     }
 }

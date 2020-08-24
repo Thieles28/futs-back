@@ -6,18 +6,18 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Table(schema = "DB_FUTTS_TESTE",name = "TB_GOL")
+@Table(schema = "DB_FUTTS", name = "TB_GOL")
 public class Gol {
     @Id
     @Column(name = "ID")
-    @GeneratedValue
-    private Long codigo;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer codigoGol;
 
-    @Column(name = "IDJOGO")
-    private Integer codigoIdJogo;
+    @Column(name = "IDJOGO", unique = true, nullable = false)
+    private Integer idJogo;
 
-    @Column(name = "IDTJOGADOR")
-    private String codigoJogador;
+    @Column(name = "IDTJOGADOR", unique = true, nullable = false)
+    private String idtJogador;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "IDJOGO", referencedColumnName = "ID", insertable = false, updatable = false)

@@ -8,15 +8,16 @@ import javax.validation.constraints.NotNull;
 
 @Data
 @Entity
-@Table(schema = "DB_FUTTS_TESTE", name = "TB_CAMPEONATO")
+@Table(schema = "DB_FUTTS", name = "TB_CAMPEONATO")
 public class Campeonato {
 
     @Id
-    @Column(name = "id")
+    @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long codigoCampeonato;
+    private Integer codigoCampeonato;
+
     @NotEmpty
     @NotNull
-    @Column(name = "nome")
+    @Column(name = "NOME")
     private String nome;
 }

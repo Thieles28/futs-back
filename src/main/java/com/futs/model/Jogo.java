@@ -7,13 +7,13 @@ import java.util.Date;
 
 @Data
 @Entity
-@Table(schema = "DB_FUTTS_TESTE", name = "TB_JOGO")
+@Table(schema = "DB_FUTTS", name = "TB_JOGO")
 public class Jogo {
 
     @Id
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long codigo;
+    private Integer codigoJogo;
 
     @Column(name = "IDCAMPEONATO")
     private Integer idCampeonato;

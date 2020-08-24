@@ -8,17 +8,17 @@ import javax.validation.constraints.NotNull;
 
 @Data
 @Entity
-@Table(schema = "DB_FUTTS_TESTE", name = "TB_TIME")
+@Table(schema = "DB_FUTTS", name = "TB_TIME")
 public class Time {
 
     @Id
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long codigoTime;
+    private Integer codigoTime;
 
     @NotEmpty
     @NotNull
-    @Column(name = "nome")
+    @Column(name = "NOME")
     private String nome;
 
 //    @NotEmpty

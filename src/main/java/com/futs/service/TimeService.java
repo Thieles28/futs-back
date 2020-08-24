@@ -8,10 +8,10 @@ import java.util.List;
 
 
 @Service
-public interface TimesService {
+public interface TimeService {
     List<Time> listarTodosTimes();
-    Time buscarTimesPeloCodigo(Long codigo);
+    Time buscarTimesPeloCodigo(Integer codigo);
     ResponseEntity<Time> cadastrarTimes(Time time);
-    ResponseEntity<Time> atualizar(Long codigo, Time time);
-    void removerTimes(Long codigo);
+    ResponseEntity<Time> atualizar(Integer codigo, Time time);
+    void removerTimes(Integer codigo);
 }
