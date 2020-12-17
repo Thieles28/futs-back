@@ -1,0 +1,17 @@
+{
+    "sqltools.connections": [
+        {
+            "database": "DB_FUTTS",
+            "driver": "MySQL",
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "name": "futs",
+            "password": "root",
+            "port": 3306,
+            "previewLimit": 50,
+            "server": "localhost",
+            "username": "root"
+        }
+    ]
+}
